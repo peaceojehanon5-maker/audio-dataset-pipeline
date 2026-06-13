@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
+*.wav
+*.mp4
+*.json
+!package.json
+data/
+renders/
+audio/
+.DS_Store
