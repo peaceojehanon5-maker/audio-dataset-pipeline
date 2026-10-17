@@ -17,8 +17,6 @@ Original file is located at
 !pip install soundfile
 !gcloud auth application-default login
 # gcloud auth application-default set-quota-project "$GCP_PROJECT_ID"
-!pip install pesq
-!pip install pystoi
 !pip install tabulate # Install tabulate for table output
 !pip install matplotlib # Install matplotlib for plotting
 
@@ -46,8 +44,6 @@ from google.cloud import speech
 from googleapiclient.discovery import build
 from google.api_core.retry import Retry
 from google.cloud.speech import SpeechClient, RecognitionConfig, RecognitionAudio
-from pesq import pesq
-from pystoi import stoi
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG,

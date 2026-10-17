@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Audio dataset pipeline — MSc dissertation (Glasgow Caledonian University, 2025).
+Audio dataset pipeline: MSc dissertation (Glasgow Caledonian University, 2025).
 Peace Ojehanon.
 
 Credentials and project identifiers are read from environment variables
@@ -18,8 +18,6 @@ is committed. Adapted from the original Google Colab notebook.
 !pip install soundfile
 !gcloud auth application-default login
 # set your quota project: gcloud auth application-default set-quota-project "$GCP_PROJECT_ID"
-!pip install pesq
-!pip install pystoi
 !pip install tabulate # Install tabulate for table output
 !pip install matplotlib # Install matplotlib for plotting
 
@@ -47,8 +45,6 @@ from google.cloud import speech
 from googleapiclient.discovery import build
 from google.api_core.retry import Retry
 from google.cloud.speech import SpeechClient, RecognitionConfig, RecognitionAudio
-from pesq import pesq
-from pystoi import stoi
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG,
@@ -148,7 +144,7 @@ def download_from_gcs(source_blob, local_file):
         logging.error(f"Error downloading {source_blob} from GCS: {e}")
 
 # -------------------------------
-# Stage 2: YouTube Functions – Video Ingestion
+# Stage 2: YouTube Functions (Video Ingestion)
 # -------------------------------
 
 def get_youtube_videos(api_key, query, max_results=5):
@@ -481,7 +477,7 @@ print("\n=== Generating random spectrogram comparison ===")
     # 1. List all raw-audio blobs in GCS
 raw_blobs = list_gcs_files("audio")
 if not raw_blobs:
-        print("No raw audio found in GCS — skipping spectrogram.")
+        print("No raw audio found in GCS, skipping spectrogram.")
 else:
         # 2. Pick one at random
         raw_blob = random.choice(list(raw_blobs))
@@ -491,7 +487,7 @@ else:
         # 3. Ensure the cleaned version exists
         cleaned_list = list_gcs_files("cleaned_audio")
         if cleaned_blob not in cleaned_list:
-            print(f"No cleaned audio for '{base}' — skipping spectrogram.")
+            print(f"No cleaned audio for '{base}', skipping spectrogram.")
         else:
             # 4. Download raw and cleaned locally
             local_raw   = os.path.join(LOCAL_DOWNLOAD_DIR,   f"{base}.mp3")

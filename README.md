@@ -32,9 +32,10 @@ topics → YouTube Data API v3 search → download audio only (yt-dlp)
 - **Retries.** Temporary Speech-to-Text API errors are retried with
   exponential back-off.
 - **Schema changes.** Any missing BigQuery columns are added before each insert.
-- **Data-quality check.** In the dissertation I also checked the BigQuery table
-  with a SQL query (missing values, transcript lengths and topic balance). That
-  query is in the report's appendix and isn't in this repo yet.
+- **Data-quality check.** A SQL query checks the BigQuery table for missing
+  values, transcript lengths and the most common topic
+  (`data_quality_check.sql`). BigQuery can't confirm the audio files exist, so
+  that check needs Python.
 
 ## Evaluation
 
@@ -50,6 +51,7 @@ most, and the dissertation reports them that way.
 |------|------------|
 | `pipeline.py` | The full pipeline, followed by the evaluation steps (SNR, segmental SNR, spectrograms and Mel cepstral distortion). Exported from the original Google Colab notebook. |
 | `evaluation.py` | A separate evaluation notebook, also exported from Colab: global and segmental SNR for every cleaned clip in the bucket. |
+| `data_quality_check.sql` | The BigQuery data-quality query from Appendix B of the dissertation report. |
 
 ## Configuration and credentials
 
